@@ -17,16 +17,8 @@ app.use(expressLayout);
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
 
-// Home
-app.get('/', (req, res) => {
-
-    const locals = {
-        title: 'GPMS-BHEL',
-        description: 'Gate Pass Management System'
-    }
-
-    res.render('index', locals);
-});
+// Routes
+app.use('/', require('./server/routes/customer'));
 
 // Handle 404
 app.get('*', (req, res) => {
