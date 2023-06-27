@@ -19,7 +19,13 @@ app.set('view engine', 'ejs');
 
 // Home
 app.get('/', (req, res) => {
-    res.send('Hello World');
+
+    const locals = {
+        title: 'GPMS-BHEL',
+        description: 'Gate Pass Management System'
+    }
+
+    res.render('index', locals);
 });
 
 app.listen(port, () => {
