@@ -15,3 +15,20 @@ exports.homepage = async (req, res) => {
     res.render('index', locals);
 
 }
+
+
+/**
+ * GET /
+ * New Customer Form
+*/
+
+exports.addCustomer = async (req, res) => {
+
+    const locals = {
+        title: 'Add New Customer',
+        description: 'Gate Pass Management System',
+    }
+
+    res.render('customer/add', locals);
+
+}
