@@ -2,6 +2,9 @@ require('dotenv').config();
 
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
+const { flash } = require('express-flash-message');
+const session = require('express-session');
+
 const connectDB = require('./server/config/db');
 
 const app = express();
@@ -15,6 +18,21 @@ app.use(express.json());
 
 // Static Files
 app.use(express.static('public'));
+
+// Express Session
+app.use(
+    session({
+        secret: 'secret',
+        resave: false,
+        saveUninitialized: true,
+        cookies: {
+            maxAge: 1000 * 60 * 60 * 24 * 7, // 1 Week
+        }
+    })
+);
+
+// Flash Messages
+app.use(flash({ sessionKeyName: 'flashMessage' }));
 
 // Set Template Engine
 app.use(expressLayout);
