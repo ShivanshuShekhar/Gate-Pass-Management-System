@@ -15,14 +15,51 @@ exports.homepage = async (req, res) => {
         description: 'Gate Pass Management System',
     }
 
+    let perPage = 12;
+    let page = req.query.page || 1;
+
     try {
-        const customers = await Customer.find({}).limit(22);
-        res.render('index', { locals, messages, customers });
+
+        const customers = await Customer.aggregate([{ $sort: { updatedAt: 1 } }])
+            .skip((perPage * page) - perPage)
+            .limit(perPage)
+            .exec();
+
+        const count = await Customer.count();
+
+        res.render('index', {
+            locals,
+            customers,
+            current: page,
+            pages: Math.ceil(count / perPage),
+            messages
+        });
+
     } catch (error) {
         console.log(error);
     }
 
 }
+
+
+
+// exports.homepage = async (req, res) => {
+
+//     const messages = await req.consumeFlash('info');
+
+//     const locals = {
+//         title: 'GPMS-BHEL',
+//         description: 'Gate Pass Management System',
+//     }
+
+//     try {
+//         const customers = await Customer.find({}).limit(22);
+//         res.render('index', { locals, messages, customers });
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+// }
 
 
 /**
