@@ -15,7 +15,12 @@ exports.homepage = async (req, res) => {
         description: 'Gate Pass Management System',
     }
 
-    res.render('index', { locals, messages });
+    try {
+        const customers = await Customer.find({}).limit(22);
+        res.render('index', { locals, messages, customers });
+    } catch (error) {
+        console.log(error);
+    }
 
 }
 
