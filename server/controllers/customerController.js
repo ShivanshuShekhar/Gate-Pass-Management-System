@@ -32,3 +32,21 @@ exports.addCustomer = async (req, res) => {
     res.render('customer/add', locals);
 
 }
+
+/**
+ * POST /
+ * Create New Customer Form
+*/
+
+exports.postCustomer = async (req, res) => {
+
+    console.log(req.body);
+
+    const locals = {
+        title: 'New Customer Added',
+        description: 'Gate Pass Management System',
+    }
+
+    res.render('customer/add', locals);
+
+}
