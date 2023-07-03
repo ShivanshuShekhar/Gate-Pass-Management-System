@@ -20,7 +20,7 @@ exports.homepage = async (req, res) => {
 
     try {
 
-        const customers = await Customer.aggregate([{ $sort: { updatedAt: 1 } }])
+        const customers = await Customer.aggregate([{ $sort: { updatedAt: -1 } }])
             .skip((perPage * page) - perPage)
             .limit(perPage)
             .exec();
