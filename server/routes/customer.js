@@ -16,6 +16,8 @@ router.get('/view/:id', customerController.view);
 
 router.get('/edit/:id', customerController.edit);
 
+router.put('/edit/:id', customerController.editPost);
+
 
 
 module.exports = router;

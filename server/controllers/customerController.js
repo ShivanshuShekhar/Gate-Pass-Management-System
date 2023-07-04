@@ -133,6 +133,7 @@ exports.view = async (req, res) => {
 
 }
 
+
 /**
  * GET /
  *  Edit Customer Data
@@ -152,6 +153,33 @@ exports.edit = async (req, res) => {
             locals,
             customer
         })
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+
+/**
+ * PUT /
+ *  Update Customer Data
+*/
+
+exports.editPost = async (req, res) => {
+
+    try {
+
+        await Customer.findByIdAndUpdate(req.params.id, {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            tel: req.body.tel,
+            email: req.body.email,
+            details: req.body.details,
+            updatedAt: Date.now()
+        });
+
+        res.redirect(`/edit/${req.params.id}`);
 
     } catch (error) {
         console.log(error);
