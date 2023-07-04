@@ -42,7 +42,6 @@ exports.homepage = async (req, res) => {
 }
 
 
-
 // exports.homepage = async (req, res) => {
 
 //     const messages = await req.consumeFlash('info');
@@ -60,6 +59,27 @@ exports.homepage = async (req, res) => {
 //     }
 
 // }
+
+
+/**
+ * GET /
+ * About Page
+*/
+
+exports.about = async (req, res) => {
+
+    const locals = {
+        title: 'About',
+        description: 'Gate Pass Management System',
+    }
+
+    try {
+        res.render('about', { locals });
+    } catch (error) {
+        console.log(error);
+    }
+
+}
 
 
 /**
