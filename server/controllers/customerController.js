@@ -109,7 +109,7 @@ exports.postCustomer = async (req, res) => {
 
 /**
  * GET /
- * Customer Data
+ * View Customer Data
 */
 
 exports.view = async (req, res) => {
@@ -123,6 +123,32 @@ exports.view = async (req, res) => {
         };
 
         res.render('customer/view', {
+            locals,
+            customer
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+/**
+ * GET /
+ *  Edit Customer Data
+*/
+
+exports.edit = async (req, res) => {
+
+    try {
+        const customer = await Customer.findOne({ _id: req.params.id })
+
+        const locals = {
+            title: 'Edit Customer Data',
+            description: 'Gate Pass Management System',
+        };
+
+        res.render('customer/edit', {
             locals,
             customer
         })
