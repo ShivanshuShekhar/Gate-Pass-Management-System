@@ -203,3 +203,39 @@ try {
 }
 
 }
+
+
+/**
+ * POST /
+ *  Search Customer Data
+*/
+
+exports.searchCustomer = async (req, res) => {
+
+    const locals = {
+        title: 'Search Customer Data',
+        description: 'Gate Pass Management System',
+    };
+
+    try {
+        
+        let searchTerm = req.body.searchTerm;
+        const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
+
+        const customers = await Customer.find({
+            $or: [
+                { firstName: { $regex: new RegExp(searchNoSpecialChar, 'i') } },
+                { lastName: { $regex: new RegExp(searchNoSpecialChar, 'i') } },
+            ]
+        });
+
+        res.render("search", {
+            customers,
+            locals
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
+    
+    }
