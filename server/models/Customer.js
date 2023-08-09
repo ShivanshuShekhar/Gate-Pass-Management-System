@@ -18,6 +18,18 @@ const CustomerSchema = new Schema({
         type: String,
         required: true,
     },
+    date: {
+        type: String,
+        required: true,
+    },
+    timeIn: {
+        type: String,
+        required: true,
+    },
+    timeOut: {
+        type: String,
+        required: true,
+    },
     details: {
         type: String,
         required: true,

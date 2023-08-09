@@ -112,6 +112,9 @@ exports.postCustomer = async (req, res) => {
         lastName: req.body.lastName,
         tel: req.body.tel,
         email: req.body.email,
+        date: req.body.date,
+        timeIn: req.body.timeIn,
+        timeOut: req.body.timeOut,
         details: req.body.details
     })
 
@@ -195,6 +198,9 @@ exports.editPost = async (req, res) => {
             lastName: req.body.lastName,
             tel: req.body.tel,
             email: req.body.email,
+            date: req.body.date,
+            timeIn: req.body.timeIn,
+            timeOut: req.body.timeOut,
             details: req.body.details,
             updatedAt: Date.now()
         });
